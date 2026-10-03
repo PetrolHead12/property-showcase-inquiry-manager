@@ -31,7 +31,7 @@ if config.config_file_name is not None:
 # Use the database URL from .env
 config.set_main_option(
     "sqlalchemy.url",
-    settings.database_url.replace("%", "%%"),
+    settings.async_database_url.replace("%", "%%"),
 )
 
 
