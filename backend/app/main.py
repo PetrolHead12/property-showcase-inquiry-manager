@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.db import check_database_connection
 from app.api.routes.properties import router as properties_router
+from app.api.routes.inquiries import router as inquiries_router
 
 app = FastAPI(
     title="Property Showcase & Inquiry Manager",
@@ -20,7 +21,7 @@ app.add_middleware(
 )
 
 app.include_router(properties_router, prefix="/api")
-
+app.include_router(inquiries_router, prefix="/api")
 
 @app.get("/health")
 async def health_check():
