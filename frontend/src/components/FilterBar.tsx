@@ -1,6 +1,4 @@
-/**
- * Place at: frontend/src/components/FilterBar.tsx
- */
+
 import type { PropertyFilters } from "../lib/types";
 
 interface FilterBarProps {

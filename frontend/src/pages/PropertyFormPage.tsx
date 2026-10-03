@@ -1,6 +1,4 @@
-/**
- * Place at: frontend/src/pages/PropertyFormPage.tsx
- */
+
 import { useEffect, useState, type FormEvent } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { fetchProperty, createProperty, updateProperty } from "../lib/api";

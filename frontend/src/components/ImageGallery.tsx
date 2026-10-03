@@ -1,6 +1,4 @@
-/**
- * Place at: frontend/src/components/ImageGallery.tsx
- */
+
 import { useState } from "react";
 import type { PropertyImage } from "../lib/types";
 

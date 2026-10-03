@@ -1,6 +1,4 @@
-/**
- * Place at: frontend/src/components/PropertyCard.tsx
- */
+
 import { Link } from "react-router-dom";
 import type { PropertyListItem } from "../lib/types";
 import { formatPriceINR, formatSqft, formatBedrooms } from "../lib/format";

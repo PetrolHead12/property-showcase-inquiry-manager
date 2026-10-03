@@ -1,6 +1,4 @@
-/**
- * Place at: frontend/src/lib/api.ts
- */
+
 import axios from "axios";
 import type {
   Property,

@@ -1,6 +1,4 @@
-/**
- * Place at: frontend/src/App.tsx (replace existing)
- */
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { PropertyGridPage } from "./pages/PropertyGridPage";

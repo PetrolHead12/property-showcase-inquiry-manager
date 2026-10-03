@@ -1,8 +1,4 @@
-/**
- * Place at: frontend/src/lib/types.ts
- * Mirrors backend/app/schemas/property.py — keep these in sync by hand
- * since there's no shared codegen between FastAPI and the frontend here.
- */
+
 
 export type PropertyStatus = "available" | "under_offer" | "sold";
 

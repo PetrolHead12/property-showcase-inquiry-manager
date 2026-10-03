@@ -1,6 +1,4 @@
-/**
- * Place at: frontend/src/pages/AdminDashboardPage.tsx
- */
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchProperties, fetchInquiries, deleteProperty } from "../lib/api";

@@ -1,7 +1,6 @@
 """
 Inquiries router: buyer submits via property detail page; admin views all.
 
-Place at: backend/app/api/routes/inquiries.py
 """
 from typing import Optional
 

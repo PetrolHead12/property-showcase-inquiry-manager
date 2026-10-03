@@ -1,6 +1,4 @@
-/**
- * Place at: frontend/src/pages/PropertyDetailPage.tsx
- */
+
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchProperty } from "../lib/api";

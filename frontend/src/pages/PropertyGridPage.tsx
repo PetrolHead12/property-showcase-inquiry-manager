@@ -1,6 +1,4 @@
-/**
- * Place at: frontend/src/pages/PropertyGridPage.tsx
- */
+
 import { useEffect, useState } from "react";
 import { fetchProperties } from "../lib/api";
 import type { PropertyListItem, PropertyFilters } from "../lib/types";

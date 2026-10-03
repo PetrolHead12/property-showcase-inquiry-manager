@@ -1,6 +1,4 @@
-/**
- * Place at: frontend/src/components/InquiryForm.tsx
- */
+
 import { useState, type FormEvent } from "react";
 import { submitInquiry } from "../lib/api";
 

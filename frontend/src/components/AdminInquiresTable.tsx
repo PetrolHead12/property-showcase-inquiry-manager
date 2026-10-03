@@ -1,6 +1,4 @@
-/**
- * Place at: frontend/src/components/AdminInquiriesTable.tsx
- */
+
 import type { InquiryWithProperty } from "../lib/types";
 
 function formatDate(iso: string): string {

@@ -1,4 +1,4 @@
-# property-showcase-inquiry-manager# Property Showcase & Inquiry Manager
+# Property Showcase & Inquiry Manager
 
 An internal tool for managing and showcasing a portfolio of luxury properties
 in Bengaluru, built for the sales team to present listings to prospective
@@ -107,6 +107,44 @@ migration. Summary:
 - **inquiries** — one-to-many on properties (`ON DELETE RESTRICT`, meaning a
   property with existing inquiries can't be deleted until they're handled —
   see Scope decisions below).
+
+## Architecture & trade-offs
+
+The backend is async FastAPI over async SQLAlchemy, chosen mainly for the
+tight schema-to-validation story: Pydantic models mirror the DB schema
+almost field-for-field, so the same rules (positive price, required fields,
+valid image URLs) are enforced at the API boundary and again as DB check
+constraints, rather than trusting one layer alone. The frontend keeps a thin
+typed API client (`lib/api.ts`, `lib/types.ts`) as the single boundary to the
+backend, so every component works with typed data instead of loose JSON.
+The biggest trade-off was choosing hard delete over soft delete for
+properties and inquiries: it's a simpler schema and simpler queries (no
+`is_deleted` filter needed everywhere), but it means a property with
+existing inquiries can't be deleted outright — enforced via `ON DELETE
+RESTRICT` and surfaced as a 409 from the API — rather than preserving a
+deleted-but-recoverable history. I also scoped images to pasted URLs rather
+than file uploads, since the brief explicitly allows stock/placeholder
+images and file storage would be infrastructure without a stated
+requirement. Given the time limit, I prioritized a fully working CRUD +
+inquiry loop with real validation and empty/loading states over polishing
+every interaction; the admin section intentionally has no authentication,
+since the brief frames it as an internal tool rather than a product with
+real user accounts.
+
+## What I'd do next with more time
+
+- Add authentication on `/admin` (even a simple shared-password gate) before
+  this went anywhere near a real deployment.
+- Pagination on the properties grid and the inquiries table — both will be
+  the first thing to break as the portfolio or inquiry volume grows past a
+  page.
+- Soft delete (or an explicit "archive" status) instead of hard delete, so
+  a property's inquiry history survives even after it's taken off the
+  market.
+- Image upload (to S3 or similar) instead of pasted URLs, so the sales team
+  isn't dependent on an external image host.
+- Basic automated tests around the validation rules and the delete/restrict
+  behavior, since that's the logic most likely to regress silently.
 
 ## Scope decisions
 

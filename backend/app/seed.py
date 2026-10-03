@@ -3,9 +3,6 @@
 Seed script: populates demo properties, images, and inquiries for local dev
 and reviewer walkthroughs.
 
-Place at: backend/app/seed.py
-Run from backend/ with: python -m app.seed
-
 Safe to re-run: it checks for existing data and exits early rather than
 duplicating rows, so you don't need to remember to truncate tables first.
 """
