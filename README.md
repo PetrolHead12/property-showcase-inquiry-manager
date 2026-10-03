@@ -152,8 +152,7 @@ A few deliberate calls made to keep this focused, worth being upfront about:
 
 - **No authentication on `/admin`.** The brief describes this as an internal
   tool and doesn't ask for an auth system; adding one would be scope creep
-  without a stated requirement. In a real deployment this route would sit
-  behind SSO or a reverse-proxy auth layer.
+  without a stated requirement. 
 - **Hard delete, not soft delete.** Simpler data model; acceptable for an
   internal tool at this scale. The trade-off: a property with inquiry
   history can't be deleted outright (DB `RESTRICT` + a 409 API response)
