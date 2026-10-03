@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="WhiteLotus logo">
+  <defs>
+    <linearGradient id="whitelotus-gold" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#f4d9a8"/>
+      <stop offset="100%" stop-color="#bf8f43"/>
+    </linearGradient>
+    <linearGradient id="whitelotus-green" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#6aa88d"/>
+      <stop offset="100%" stop-color="#1e4f42"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="30" fill="#f7f1e7"/>
+  <circle cx="64" cy="64" r="45" fill="#1d4037"/>
+  <path d="M64 25c-9 12-12 22-12 32 0 11 5 18 12 23 7-5 12-12 12-23 0-10-3-20-12-32Z" fill="url(#whitelotus-gold)" opacity="0.96"/>
+  <path d="M38 52c12-7 22-10 26-10 12 0 22 5 26 10-9 4-18 13-26 25-8-12-17-21-26-25Z" fill="url(#whitelotus-gold)" opacity="0.9"/>
+  <path d="M90 52c-12-7-22-10-26-10-12 0-22 5-26 10 9 4 18 13 26 25 8-12 17-21 26-25Z" fill="url(#whitelotus-gold)" opacity="0.9"/>
+  <path d="M50 82c7-7 12-12 14-16 2 4 7 9 14 16-6 8-12 13-14 15-2-2-8-7-14-15Z" fill="url(#whitelotus-green)"/>
+  <path d="M77 83c3-4 7-10 11-17 8 4 14 10 18 17-6 8-12 12-18 15-5-3-10-7-11-15Z" fill="#d7b06d" opacity="0.85"/>
+  <path d="M45 83c-3-4-7-10-11-17-8 4-14 10-18 17 6 8 12 12 18 15 5-3 10-7 11-15Z" fill="#d7b06d" opacity="0.85"/>
+  <path d="M64 43c10 0 17 8 17 20 0 13-8 22-17 28-9-6-17-15-17-28 0-12 7-20 17-20Z" fill="#f7efe5" opacity="0.9"/>
+</svg>

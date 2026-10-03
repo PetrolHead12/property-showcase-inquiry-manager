@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { PropertyGridPage } from "./pages/PropertyGridPage";
 
-import { PropertyDetailPage } from "./components/PropertyDetailPage";
+import { PropertyDetailPage } from "./pages/PropertyDetailPage";
 import { AdminDashboardPage } from "./pages/AdminDashboardPage";
 import { PropertyFormPage } from "./pages/PropertyFormPage";
 

@@ -1,31 +1,100 @@
 
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap");
 
 @theme {
-  --color-ink: #1c1b19;
-  --color-paper: #faf9f6;
-  --color-stone: #edeae2;
-  --color-taupe: #6b6459;
-  --color-brass: #8a6d3b;
+  --color-ink: #183126;
+  --color-paper: #f8f4ee;
+  --color-stone: #e8dfd2;
+  --color-taupe: #5e6a62;
+  --color-brass: #bf8f43;
   --color-brick: #c94f3d;
 
-  --font-display: "Fraunces", serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
+  :root {
+    color-scheme: light;
+  }
+
   html {
     scroll-behavior: smooth;
+    background: #f8f4ee;
   }
 
   body {
-    background-color: var(--color-paper);
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top left, rgba(215, 182, 111, 0.12), transparent 28%),
+      linear-gradient(180deg, #f7f1ea 0%, #f4efe9 100%);
     color: var(--color-ink);
     font-family: var(--font-sans);
   }
 
-  /* Visible keyboard focus everywhere — accessibility floor, not optional */
+  a {
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  .brand-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 0.9rem;
+    background: linear-gradient(135deg, rgba(28, 70, 60, 0.1), rgba(214, 179, 112, 0.18));
+    box-shadow: inset 0 0 0 1px rgba(24, 49, 38, 0.08);
+  }
+
+  .brand-mark img {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  .brand-copy {
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 0.95;
+  }
+
+  .brand-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.65rem, 1.2rem + 0.8vw, 2.1rem);
+    letter-spacing: -0.04em;
+    color: var(--color-ink);
+  }
+
+  .brand-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-taupe);
+    margin-top: 0.15rem;
+  }
+
+  .soft-panel {
+    box-shadow: 0 24px 60px rgba(24, 49, 38, 0.16);
+  }
+
+  .filter-panel select,
+  .filter-panel input {
+    font: inherit;
+  }
+
   :focus-visible {
     outline: 2px solid var(--color-brass);
     outline-offset: 2px;

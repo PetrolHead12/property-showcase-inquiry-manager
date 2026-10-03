@@ -69,36 +69,36 @@ export function PropertyDetailPage() {
         <ImageGallery images={property.images} propertyName={property.name} />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mt-10">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-12">
         <div className="lg:col-span-2">
           <div className="flex items-start justify-between gap-4">
-            <h1 className="font-display text-3xl text-ink">{property.name}</h1>
+            <h1 className="font-display text-4xl leading-tight text-ink">{property.name}</h1>
             <StatusPill status={property.status} />
           </div>
-          <p className="text-taupe mt-1">{property.location}</p>
+          <p className="text-taupe mt-2">{property.location}</p>
 
-          <div className="flex gap-6 mt-6 py-4 border-y border-stone text-sm">
+          <div className="flex gap-10 mt-8 py-5 border-y border-stone text-sm">
             <div>
-              <p className="text-taupe">Price</p>
-              <p className="font-display text-brass text-lg mt-0.5">
+              <p className="text-taupe">Starting from</p>
+              <p className="font-display text-brass text-2xl mt-1">
                 {formatPriceINR(property.price)}
               </p>
             </div>
             <div>
               <p className="text-taupe">Size</p>
-              <p className="text-ink mt-0.5">{formatSqft(property.size_sqft)}</p>
+              <p className="text-ink mt-1">{formatSqft(property.size_sqft)}</p>
             </div>
             <div>
               <p className="text-taupe">Configuration</p>
-              <p className="text-ink mt-0.5">{formatBedrooms(property.bedrooms)}</p>
+              <p className="text-ink mt-1">{formatBedrooms(property.bedrooms)}</p>
             </div>
           </div>
 
-          <p className="text-ink leading-relaxed mt-6 max-w-prose">{property.description}</p>
+          <p className="text-ink leading-relaxed mt-8 max-w-prose">{property.description}</p>
         </div>
 
         <div className="lg:col-span-1">
-          <div className="bg-stone/50 border border-stone p-6">
+          <div className="bg-stone/40 border border-stone p-7">
             <InquiryForm propertyId={property.id} />
           </div>
         </div>

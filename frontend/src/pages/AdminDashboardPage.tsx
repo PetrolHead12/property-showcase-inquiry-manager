@@ -54,29 +54,37 @@ export function AdminDashboardPage() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-10">
-      <div className="flex items-center justify-between flex-wrap gap-4">
-        <div>
-          <h1 className="font-display text-3xl text-ink">Admin dashboard</h1>
-          <p className="text-taupe mt-1 text-sm">
-            Manage listings and review buyer inquiries.
-          </p>
+    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10">
+      <div className="rounded-[2rem] border border-[#eadfce] bg-[#fbf8f4]/90 p-6 shadow-[0_18px_50px_rgba(20,35,30,0.04)] sm:p-8">
+        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-[11px] font-medium uppercase tracking-[0.24em] text-[#1f5a4a]">
+              Portfolio dashboard
+            </p>
+            <h1 className="mt-2 font-display text-4xl text-ink sm:text-5xl">Admin dashboard</h1>
+            <p className="mt-2 text-sm text-taupe">
+              Manage listings and review buyer inquiries.
+            </p>
+          </div>
+
+          <Link
+            to="/admin/properties/new"
+            className="inline-flex items-center justify-center rounded-full bg-[#183126] px-5 py-3 text-sm font-medium text-[#f8f4ee] shadow-[0_18px_35px_rgba(24,49,38,0.15)] transition-transform hover:-translate-y-0.5"
+          >
+            Add property
+          </Link>
         </div>
-        <Link
-          to="/admin/properties/new"
-          className="px-5 py-2.5 bg-ink text-paper text-sm hover:bg-brass transition-colors"
-        >
-          Add property
-        </Link>
       </div>
 
-      <div className="flex gap-6 mt-8 border-b border-stone">
-        <TabButton active={tab === "properties"} onClick={() => setTab("properties")}>
-          Properties ({properties.length})
-        </TabButton>
-        <TabButton active={tab === "inquiries"} onClick={() => setTab("inquiries")}>
-          Inquiries ({inquiries.length})
-        </TabButton>
+      <div className="mt-8 rounded-[1.5rem] border border-[#e7ddd1] bg-[#f7f1ea] p-2 shadow-[0_10px_30px_rgba(24,49,38,0.04)]">
+        <div className="flex flex-wrap gap-2">
+          <TabButton active={tab === "properties"} onClick={() => setTab("properties")}>
+            Properties <span className="ml-2 rounded-full bg-white/60 px-2 py-0.5 text-[11px] text-[#183126]">{properties.length}</span>
+          </TabButton>
+          <TabButton active={tab === "inquiries"} onClick={() => setTab("inquiries")}>
+            Inquiries <span className="ml-2 rounded-full bg-white/60 px-2 py-0.5 text-[11px] text-[#183126]">{inquiries.length}</span>
+          </TabButton>
+        </div>
       </div>
 
       <div className="mt-6">
@@ -89,7 +97,7 @@ export function AdminDashboardPage() {
         {!loading && !error && (
           <>
             {deleteError && (
-              <p className="text-brick text-sm mb-4 bg-brick/5 border border-brick/20 px-4 py-3">
+              <p className="mb-4 rounded-2xl border border-[#e8b5a8] bg-[#fdf1ee] px-4 py-3 text-sm text-[#8f3d2f]">
                 {deleteError}
               </p>
             )}
@@ -121,8 +129,10 @@ function TabButton({
   return (
     <button
       onClick={onClick}
-      className={`pb-3 text-sm border-b-2 -mb-px transition-colors ${
-        active ? "border-brass text-ink" : "border-transparent text-taupe hover:text-ink"
+      className={`inline-flex items-center rounded-full px-4 py-2.5 text-sm font-medium transition-all duration-200 ${
+        active
+          ? "bg-[#183126] text-[#f8f4ee] shadow-[0_12px_28px_rgba(17,30,24,0.18)]"
+          : "bg-transparent text-[#5e6a62] hover:bg-white hover:text-[#183126]"
       }`}
     >
       {children}
