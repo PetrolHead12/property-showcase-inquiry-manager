@@ -70,10 +70,16 @@ class Property(Base):
     )
 
     status = Column(
-        Enum(PropertyStatus, name="property_status"),
-        nullable=False,
-        default=PropertyStatus.AVAILABLE,
-        server_default=PropertyStatus.AVAILABLE.value,
+    Enum(
+        PropertyStatus,
+        name="property_status",
+        values_callable=lambda enum_class: [
+            member.value for member in enum_class
+        ],
+    ),
+    nullable=False,
+    default=PropertyStatus.AVAILABLE,
+    server_default=PropertyStatus.AVAILABLE.value,
     )
 
     created_at = Column(
