@@ -1,17 +1,20 @@
+
 """
 Seed script: populates demo properties, images, and inquiries for local dev
 and reviewer walkthroughs.
 
 Place at: backend/app/seed.py
-Run from backend/ with:  python -m app.seed
+Run from backend/ with: python -m app.seed
 
 Safe to re-run: it checks for existing data and exits early rather than
 duplicating rows, so you don't need to remember to truncate tables first.
 """
+
 import asyncio
 
 from app.core.db import async_session_maker
 from app.models.models import Inquiry, Property, PropertyImage, PropertyStatus
+
 
 PROPERTIES = [
     {
@@ -29,8 +32,8 @@ PROPERTIES = [
         ),
         "status": PropertyStatus.AVAILABLE,
         "images": [
-            "https://picsum.photos/id/1040/1200/800",
-            "https://picsum.photos/id/1041/1200/800",
+            "https://media.istockphoto.com/id/2223376026/photo/luxury-tropical-pool-villa-at-dusk.jpg?s=612x612&w=0&k=20&c=KmXb1-GWZvz-Fa6TvMKIbNsxfEs09t6Nm5NEzrMBy3E=",
+            "https://cdn.confident-group.com/wp-content/uploads/2024/12/27103036/types-of-real-estate-overview-scaled.jpg",
         ],
     },
     {
@@ -47,8 +50,8 @@ PROPERTIES = [
         ),
         "status": PropertyStatus.UNDER_OFFER,
         "images": [
-            "https://picsum.photos/id/1048/1200/800",
-            "https://picsum.photos/id/1050/1200/800",
+            "https://www.srijanrealty.com/wp-content/uploads/2023/10/Top-Real-Estate-Property-With-Open-Spaces-In-Kolkata.webp",
+            "https://img.etimg.com/thumb/width-420,height-315,imgsize-548665,resizemode-75,msid-111517565/wealth/real-estate/residential-property-sales-highest-in-a-decade-in-h1-2024-not-affordable-housing-but-this-segment-emerges-as-top-favourite/real-estate-boom-in-india.jpg",
         ],
     },
     {
@@ -65,9 +68,9 @@ PROPERTIES = [
         ),
         "status": PropertyStatus.AVAILABLE,
         "images": [
-            "https://picsum.photos/id/1052/1200/800",
-            "https://picsum.photos/id/1054/1200/800",
-            "https://picsum.photos/id/1056/1200/800",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnlFWo09Vbu90vv0t6NWTTXgzZS3S_dC5hF7qACPAUAQ&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWxYicg3543ZVt4YGyAinGyLphpRetfoI1uznt0SXipE4YmuR5qtvYDCQw&s=10",
+            "https://www.tatacarnatica.ind.in/project/real-estate-market-in-bangalore-2022.webp",
         ],
     },
     {
@@ -84,16 +87,32 @@ PROPERTIES = [
         ),
         "status": PropertyStatus.SOLD,
         "images": [
-            "https://picsum.photos/id/1060/1200/800",
+            "https://static.toiimg.com/thumb/msid-131265421,imgsize-157894,width-400,resizemode-4/infrastructure-growth-and-real-estate-development-in-bengaluru.jpg",
+            "https://cdn.confident-group.com/wp-content/uploads/2024/12/27103036/types-of-real-estate-overview-scaled.jpg",
         ],
     },
 ]
 
+
 SAMPLE_INQUIRIES = [
-    {"name": "Asha Rao", "email": "asha.rao@example.com", "phone": "9876543210",
-     "message": "Interested in scheduling a site visit this weekend. Is the property still available?"},
-    {"name": "Vikram Shetty", "email": "vikram.shetty@example.com", "phone": "9845012345",
-     "message": "Could you share the floor plan and details on the maintenance charges?"},
+    {
+        "name": "Asha Rao",
+        "email": "asha.rao@example.com",
+        "phone": "9876543210",
+        "message": (
+            "Interested in scheduling a site visit this weekend. "
+            "Is the property still available?"
+        ),
+    },
+    {
+        "name": "Vikram Shetty",
+        "email": "vikram.shetty@example.com",
+        "phone": "9845012345",
+        "message": (
+            "Could you share the floor plan and details on "
+            "the maintenance charges?"
+        ),
+    },
 ]
 
 
@@ -101,27 +120,59 @@ async def seed() -> None:
     async with async_session_maker() as session:
         from sqlalchemy import select
 
-        existing = await session.execute(select(Property.id).limit(1))
+        existing = await session.execute(
+            select(Property.id).limit(1)
+        )
+
         if existing.scalar_one_or_none() is not None:
-            print("Seed data already present — skipping. (Delete rows manually to re-seed.)")
+            print(
+                "Seed data already present — skipping. "
+                "(Delete rows manually to re-seed.)"
+            )
             return
 
         for prop_data in PROPERTIES:
-            image_urls = prop_data.pop("images")
-            prop = Property(**prop_data)
+            # Don't mutate the original PROPERTIES dictionary.
+            image_urls = prop_data["images"]
+
+            property_data = {
+                key: value
+                for key, value in prop_data.items()
+                if key != "images"
+            }
+
+            prop = Property(**property_data)
+
             prop.images = [
-                PropertyImage(image_url=url, is_primary=(i == 0), display_order=i)
+                PropertyImage(
+                    image_url=url,
+                    is_primary=(i == 0),
+                    display_order=i,
+                )
                 for i, url in enumerate(image_urls)
             ]
+
             session.add(prop)
-            await session.flush()  # get prop.id before creating inquiries
+
+            # Get prop.id before creating inquiries.
+            await session.flush()
 
             for inquiry_data in SAMPLE_INQUIRIES:
-                session.add(Inquiry(property_id=prop.id, **inquiry_data))
+                session.add(
+                    Inquiry(
+                        property_id=prop.id,
+                        **inquiry_data,
+                    )
+                )
 
         await session.commit()
-        print(f"Seeded {len(PROPERTIES)} properties with images and sample inquiries.")
+
+        print(
+            f"Seeded {len(PROPERTIES)} properties "
+            "with images and sample inquiries."
+        )
 
 
 if __name__ == "__main__":
     asyncio.run(seed())
+
