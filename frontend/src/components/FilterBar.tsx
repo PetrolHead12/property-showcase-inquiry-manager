@@ -49,10 +49,10 @@ export function FilterBar({ filters, onChange }: FilterBarProps) {
         <select
           value={`${filters.sortBy ?? "created_at"}_${filters.sortDir ?? "desc"}`}
           onChange={(e) => {
-            const [sortBy, sortDir] = e.target.value.split("_") as [
-              PropertyFilters["sortBy"],
-              PropertyFilters["sortDir"]
-            ];
+            const value = e.target.value;
+            const separatorIndex = value.lastIndexOf("_");
+            const sortBy = value.slice(0, separatorIndex) as PropertyFilters["sortBy"];
+            const sortDir = value.slice(separatorIndex + 1) as PropertyFilters["sortDir"];
             onChange({ ...filters, sortBy, sortDir });
           }}
           className="bg-transparent px-0.5 py-1 text-ink focus:outline-none"
